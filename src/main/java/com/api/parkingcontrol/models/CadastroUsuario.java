@@ -22,5 +22,11 @@ public class CadastroUsuario {
 	private Long id;
 	private String name;
     private String senha;
+
+	public String toString(){
+		return "Id: " + id +
+				",\nName: " + name +
+				",\nSenha: " + senha;
+	}
     
 }

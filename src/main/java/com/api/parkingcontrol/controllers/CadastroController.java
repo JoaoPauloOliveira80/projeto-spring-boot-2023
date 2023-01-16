@@ -39,7 +39,7 @@ public class CadastroController {
 	public String addPerfil(@RequestBody CadastroUsuario user) {
 
 		cadastroRep.save(user);
-		return "Inserido com sucesso id: ";
+		return "Inserido com sucesso...";
 
 	}
 
