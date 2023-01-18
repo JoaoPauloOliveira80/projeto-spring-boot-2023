@@ -58,9 +58,16 @@ public class ProdutoService {
     }
     //REMOVE REGISTRO
     public ResponseEntity<RespostaModelo> remover(Long codigo){
+
+        if(verificarPorId(codigo) == true){
             prodRep.deleteById(codigo);
             rm.setMensagem("O produto foi removido com sucesso");
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+        }else{
+            rm.setMensagem("Rergistro não existe");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+        }
+           
     }
 
     
