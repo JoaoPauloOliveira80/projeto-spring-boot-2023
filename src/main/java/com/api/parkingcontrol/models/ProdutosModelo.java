@@ -17,5 +17,12 @@ public class ProdutosModelo {
     private Long codigo;
     private String name;
     private String marca;
+
+
+    @Override
+    public String toString(){
+        return "Nome: "+name +
+                ",\nMarca: "+marca;
+    }
     
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.parkingcontrol.models.ProdutosModelo;
 import com.api.parkingcontrol.models.RespostaModelo;
+import com.api.parkingcontrol.repositores.ProdutosRepository;
 import com.api.parkingcontrol.services.ProdutoService;
 
 
@@ -21,14 +22,30 @@ import com.api.parkingcontrol.services.ProdutoService;
 @RestController
 @CrossOrigin(origins = "*")
 public class ProdutosController {
+    @Autowired
+    private ProdutosRepository prodRep;
     
     @Autowired
     private ProdutoService ps;
+
+    public boolean verificarPorId(Long id) {
+		return prodRep.existsById(id);
+	}
 
     @GetMapping("/listar")
     public Iterable<ProdutosModelo> listar(){
         return ps.listar();
     }
+    
+    @GetMapping("/search/{id}")
+    public String search(@PathVariable Long id){
+        if(verificarPorId(id) != true){
+            return "Registro não encontrado...";
+        }else{
+            return ps.search(id);
+        }
+       
+     }
 
     @PutMapping("/alterar")
     public ResponseEntity<?> alterar(@RequestBody ProdutosModelo pm){

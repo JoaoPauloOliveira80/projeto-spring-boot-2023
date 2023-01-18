@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.api.parkingcontrol.models.ProdutosModelo;
 import com.api.parkingcontrol.models.RespostaModelo;
@@ -29,6 +30,14 @@ public class ProdutoService {
         return prodRep.findAll();
     }
 
+    public String search(@PathVariable Long id){
+
+            ProdutosModelo prod =  prodRep.findById(id).get();
+            return "" + prod;
+       
+    }
+
+   
     //ADICIONA E REMOVE REGISTRO
     public ResponseEntity<?> cadastrarAlterar(ProdutosModelo pm, String acao){
 
